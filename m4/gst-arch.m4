@@ -50,6 +50,9 @@ AC_DEFUN([AG_GST_ARCH],
     xarm*)
       HAVE_CPU_ARM=yes
       AC_DEFINE(HAVE_CPU_ARM, 1, [Define if the host CPU is an ARM]) ;;
+    xaarch64*)
+      HAVE_CPU_AARCH64=yes
+      AC_DEFINE(HAVE_CPU_AARCH64, 1, [Define if the host CPU is an ARM64]) ;;
     xsparc*)
       HAVE_CPU_SPARC=yes
       AC_DEFINE(HAVE_CPU_SPARC, 1, [Define if the host CPU is a SPARC]) ;;
@@ -87,6 +90,7 @@ AC_DEFUN([AG_GST_ARCH],
   AM_CONDITIONAL(HAVE_CPU_PPC64,      test "x$HAVE_CPU_PPC64" = "xyes")
   AM_CONDITIONAL(HAVE_CPU_ALPHA,      test "x$HAVE_CPU_ALPHA" = "xyes")
   AM_CONDITIONAL(HAVE_CPU_ARM,        test "x$HAVE_CPU_ARM" = "xyes")
+  AM_CONDITIONAL(HAVE_CPU_AARCH64,    test "x$HAVE_CPU_AARCH64" = "xyes")
   AM_CONDITIONAL(HAVE_CPU_SPARC,      test "x$HAVE_CPU_SPARC" = "xyes")
   AM_CONDITIONAL(HAVE_CPU_HPPA,       test "x$HAVE_CPU_HPPA" = "xyes")
   AM_CONDITIONAL(HAVE_CPU_MIPS,       test "x$HAVE_CPU_MIPS" = "xyes")
@@ -105,7 +109,7 @@ AC_DEFUN([AG_GST_UNALIGNED_ACCESS], [
   AC_MSG_CHECKING([if unaligned memory access works correctly])
   if test x"$as_cv_unaligned_access" = x ; then
     case $host in
-      alpha*|arm*|hp*|mips*|sh*|sparc*|ia64*)
+      alpha*|arm*|aarch64*|hp*|mips*|sh*|sparc*|ia64*)
         _AS_ECHO_N([(blacklisted) ])
         as_cv_unaligned_access=no
 	;;
